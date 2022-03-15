@@ -84,7 +84,7 @@ class Music(commands.Cog):
     async def play(self, ctx):
         """Resumes playing of stream"""
 
-        if message.author.id in AUTHENTICATED:
+        if ctx.message.author.id in AUTHENTICATED:
             # TODO PUT request to /play
             await ctx.send("Resuming stream")
         else:
@@ -95,7 +95,7 @@ class Music(commands.Cog):
     async def pause(self, ctx):
         """Pauses stream"""
 
-        if message.author.id in AUTHENTICATED:
+        if ctx.message.author.id in AUTHENTICATED:
             # TODO PUT request to /pause
             await ctx.send("Pausing stream")
         else:
@@ -106,7 +106,7 @@ class Music(commands.Cog):
     async def skip(self, ctx):
         """Resumes playing of stream"""
 
-        if message.author.id in AUTHENTICATED:
+        if ctx.message.author.id in AUTHENTICATED:
             # TODO PUT request to /skip
             await ctx.send("Playing next song")
         else:
