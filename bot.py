@@ -41,6 +41,7 @@ ytdl_format_options = {
 ffmpeg_options = {"options": "-vn"}
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
+RAUDIO_URL = "http://momo.campus.nd.edu:5000/stream"
 
 
 class YTDLSource(discord.PCMVolumeTransformer):
@@ -86,6 +87,7 @@ class Music(commands.Cog):
 
         if ctx.message.author.id in AUTHENTICATED:
             # TODO PUT request to /play
+            r = requests.put(RAUDIO_URL + "/play")
             await ctx.send("Resuming stream")
         else:
             # DO nothing (non auth user)
@@ -97,6 +99,7 @@ class Music(commands.Cog):
 
         if ctx.message.author.id in AUTHENTICATED:
             # TODO PUT request to /pause
+            r = requests.put(RAUDIO_URL + "/pause")
             await ctx.send("Pausing stream")
         else:
             # DO nothing (non auth user)
@@ -108,6 +111,7 @@ class Music(commands.Cog):
 
         if ctx.message.author.id in AUTHENTICATED:
             # TODO PUT request to /skip
+            r = requests.put(RAUDIO_URL + "/skip")
             await ctx.send("Playing next song")
         else:
             # DO nothing (non auth user)
@@ -116,9 +120,8 @@ class Music(commands.Cog):
     @commands.command()
     async def listen(self, ctx):
         """Streams from server"""
-        url = "http://momo.campus.nd.edu:5000/stream"
         async with ctx.typing():
-            player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
+            player = await YTDLSource.from_url(RAUDIO_URL, loop=self.bot.loop, stream=True)
             ctx.voice_client.play(
                 player, after=lambda e: print(f"Player error: {e}") if e else None
             )
