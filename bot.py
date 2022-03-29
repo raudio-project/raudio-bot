@@ -5,7 +5,8 @@ import asyncio
 import youtube_dl
 import os
 from dotenv import load_dotenv
-
+import requests
+import time
 import discord
 from discord.ext import commands
 
@@ -116,6 +117,7 @@ class Music(commands.Cog):
         else:
             # DO nothing (non auth user)
             await ctx.send("You are not able to do that")
+        time.sleep(3)
 
     @commands.command()
     async def listen(self, ctx):
