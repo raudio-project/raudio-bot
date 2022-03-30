@@ -5,7 +5,7 @@ import os
 
 @dataclass
 class RaudioConfig:
-    authenticated: list[str]
+    authenticated: list[int]
     stream_url: str
 
 
