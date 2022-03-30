@@ -11,6 +11,12 @@ class Raudio(commands.Bot):
         print(f"Logged in as {self.user} (ID: {self.user.id})")
         print("------")
 
+    def reload_modules(self) -> None:
+        for file in os.listdir("raudio/modules"):
+            if file.endswith('.py'):
+                print(f"Reloading {file[:-3]} module...")
+                self.reload_extension(f"modules.{file[:-3]}")
+
     def load_modules(self) -> None:
         for file in os.listdir("raudio/modules"):
             if file.endswith('.py'):
