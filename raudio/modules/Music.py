@@ -27,6 +27,7 @@ ffmpeg_options = {"options": "-vn"}
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
+
 class YTDLSource(discord.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=0.5):
         super().__init__(source, volume)
@@ -105,7 +106,9 @@ class Music(commands.Cog):
     async def listen(self, ctx):
         """Streams from server"""
         async with ctx.typing():
-            player = await YTDLSource.from_url(self.bot.config.stream_url, loop=self.bot.loop, stream=True)
+            player = await YTDLSource.from_url(
+                self.bot.config.stream_url, loop=self.bot.loop, stream=True
+            )
             ctx.voice_client.play(
                 player, after=lambda e: print(f"Player error: {e}") if e else None
             )
@@ -128,6 +131,7 @@ class Music(commands.Cog):
                 raise commands.CommandError("Author not connected to a voice channel.")
         elif ctx.voice_client.is_playing():
             ctx.voice_client.stop()
+
 
 def setup(bot: commands.Bot):
     bot.add_cog(Music(bot))
