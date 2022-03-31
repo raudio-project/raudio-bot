@@ -7,6 +7,7 @@ from discord.ext import commands
 
 ffmpeg_options = {"options": "-vn"}
 
+
 async def from_url(url, *, loop=None, stream=False):
     return discord.FFmpegPCMAudio(url, **ffmpeg_options)
 
@@ -18,7 +19,6 @@ class Music(commands.Cog):
     @commands.command()
     async def join(self, ctx, *, channel: discord.VoiceChannel):
         """Joins a voice channel"""
-
         if ctx.voice_client is not None:
             return await ctx.voice_client.move_to(channel)
 
@@ -61,17 +61,25 @@ class Music(commands.Cog):
             await ctx.send("You are not able to do that")
         time.sleep(3)
 
+    async def fetch_next_song(self, event, ctx):
+        player = await from_url(
+            self.bot.config.stream_url, loop=self.bot.loop, stream=True
+        )
+        ctx.voice_client.play(
+            player, after=lambda e: print(f"Player error: {e}") if e else event.set()
+        )
+
+    async def play_songs(self, ctx):
+        while True:
+            print("playing song")
+            event = asyncio.Event()
+            await self.fetch_next_song(event, ctx)
+            await event.wait()
+
     @commands.command()
     async def listen(self, ctx):
         """Streams from server"""
-        async with ctx.typing():
-            player = await from_url(
-                self.bot.config.stream_url, loop=self.bot.loop, stream=True
-            )
-            ctx.voice_client.play(
-                player, after=lambda e: print(f"Player error: {e}") if e else print("Song is completed")
-            )
-
+        await self.play_songs(ctx)
         await ctx.send(f"Now playing Raudio Mix")
 
     @commands.command()
