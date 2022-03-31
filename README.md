@@ -4,7 +4,7 @@ server. At the moment, it just a proof of concept in order to be an example
 for one of many clients you could build Raudio.
 
 ## Installation
-Coming soon.
+[PyPI Package](https://pypi.org/project/raudio-bot/)
 
 ## Setting up a development environment
 In order to develop for the Raudio bot, first you must obtain a token from
