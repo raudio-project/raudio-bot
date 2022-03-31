@@ -64,7 +64,7 @@ students signed into the `eduroam` network, due to the university firewall.
 Now you should be all set up! Simply run the following
 
 ```
-$ python3 raudio
+$ python3 raudio_bot
 ```
 
 ## License
