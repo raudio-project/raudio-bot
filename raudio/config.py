@@ -9,7 +9,7 @@ class RaudioConfig:
 
         Note: Properties prefixed with '_' are considered private. These should
         not be printed out to the user as it might contain sensitive data
-    """"
+    """
     _config_file_path: Optional[str]
     authenticated: list[int]
     stream_url: str
