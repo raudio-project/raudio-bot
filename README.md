@@ -31,7 +31,7 @@ $ git clone git@github.com:raudio-project/raudio-bot.git
 $ cd raudio-bot
 $ python3 -m venv venv             # Create a python virtual environment
 $ source venv/bin/activate         # Activate the dev environment
-$ pip3 install                     # Install dependencies for the project
+$ pip3 install .                   # Install dependencies for the project
 ```
 
 ### Setting your token
