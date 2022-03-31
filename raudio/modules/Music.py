@@ -7,6 +7,7 @@ from discord.ext import commands
 
 ffmpeg_options = {"options": "-vn"}
 
+
 async def from_url(url, *, loop=None, stream=False):
     return discord.FFmpegPCMAudio(url, **ffmpeg_options)
 
@@ -70,11 +71,10 @@ class Music(commands.Cog):
 
     async def play_songs(self, ctx):
         while True:
-            print('playing song')
+            print("playing song")
             event = asyncio.Event()
             await self.fetch_next_song(event, ctx)
             await event.wait()
-
 
     @commands.command()
     async def listen(self, ctx):
