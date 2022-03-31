@@ -3,8 +3,8 @@
 import dataclasses
 import os
 
-from bot import Raudio
-from config import raudio_config_from_json
+from raudio_bot.bot import Raudio
+from raudio_bot.config import raudio_config_from_json
 
 from discord.ext import commands
 from dotenv import load_dotenv
