@@ -12,9 +12,10 @@ Discord for authenticating your bot. You can do this by visiting the [Discord
 Developer Portal](https://discord.com/developers/applications) and creating an
 application. From there you can generate a token for the bot.
 
-Clone the repository with the following:
 
 ### Downloading the project
+Clone the repository with the following:
+
 ```sh
 $ git clone git@github.com:raudio-project/raudio-bot.git
 $ cd raudio-bot
