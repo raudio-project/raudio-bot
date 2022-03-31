@@ -4,7 +4,17 @@ server. At the moment, it just a proof of concept in order to be an example
 for one of many clients you could build Raudio.
 
 ## Installation
-Coming soon.
+
+Install the package, optionally in a virtual environment:
+
+`pip install raudio-bot`
+
+Create the appropriate configuration files. See **Setting your token** and
+**Creating a bot configuration** below.
+
+Finally, run the bot:
+
+`python3 -m raudio_bot`
 
 ## Setting up a development environment
 In order to develop for the Raudio bot, first you must obtain a token from
