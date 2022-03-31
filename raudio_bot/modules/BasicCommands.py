@@ -7,6 +7,7 @@ from discord.ext import commands
 
 # from raudio.config import raudio_config_from_json
 
+
 class BasicCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -22,7 +23,7 @@ class BasicCommands(commands.Cog):
         config = asdict(self.bot.config)
 
         # Filter out underscore properties
-        config = dict((filter(lambda k: not k[0].startswith('_'), config.items())))
+        config = dict((filter(lambda k: not k[0].startswith("_"), config.items())))
 
         await ctx.send(f"Your current config is: {config}")
 
@@ -31,6 +32,7 @@ class BasicCommands(commands.Cog):
         """Reload the current commands (for developers)"""
         self.bot.reload_modules()
         await ctx.send("Reloading commands...")
+
 
 #       FIXME: Import currently not working
 #        if self.bot.config._config_file_path:
