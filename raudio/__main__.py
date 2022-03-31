@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import dataclasses
 import os
 
 from bot import Raudio
@@ -29,7 +30,7 @@ def main() -> None:
         description="Relatively simple music bot example",
         config=raudio_config_from_json("raudio_config.json"),
     )
-
+    print(f"Using the following configuration: {dataclasses.asdict(bot.config)}")
     bot.run(token)
 
 

@@ -5,6 +5,7 @@ from unicodedata import name
 
 from discord.ext import commands
 
+# from raudio.config import raudio_config_from_json
 
 class BasicCommands(commands.Cog):
     def __init__(self, bot):
@@ -18,13 +19,23 @@ class BasicCommands(commands.Cog):
     @commands.command()
     async def config(self, ctx):
         """Print your current configuration settings"""
-        await ctx.send(f"Your current config is: {asdict(self.bot.config)}")
+        config = asdict(self.bot.config)
+
+        # Filter out underscore properties
+        config = dict((filter(lambda k: not k[0].startswith('_'), config.items())))
+
+        await ctx.send(f"Your current config is: {config}")
 
     @commands.command()
     async def reload(self, ctx):
         """Reload the current commands (for developers)"""
         self.bot.reload_modules()
         await ctx.send("Reloading commands...")
+
+#       FIXME: Import currently not working
+#        if self.bot.config._config_file_path:
+#            await ctx.send("Reloading configuration file...")
+#            self.bot.config = raudio_config_from_json(self.bot.config._config_file_path)
 
 
 def setup(bot: commands.Bot):
