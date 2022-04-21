@@ -23,7 +23,7 @@ def check_for_file(file_name):
             url = input("Enter URL of server you will be streaming from: ")
 
             # ADD ANY OTHER DEFAULT CONFIGS HERE
-            data = {'stream_url': url, 'authenticated': [ ]}
+            data = RaudioConfig(stream_url=url, authenticated=[])
 
             # create default json file in upper directory
             with open('raudio_config.json','w') as jsonfile:
