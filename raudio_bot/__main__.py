@@ -30,7 +30,6 @@ def check_for_file(file_name):
                 json.dump(data, jsonfile)
 
             # call recursively on newly created file
-            raudio_config_from_json('raudio_config.json')
 
             return True
 
