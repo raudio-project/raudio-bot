@@ -5,6 +5,7 @@ import os
 
 from raudio_bot.bot import Raudio
 from raudio_bot.config import raudio_config_from_json
+from config import RaudioConfig
 
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -24,12 +25,12 @@ def check_for_file(file_name):
 
             # ADD ANY OTHER DEFAULT CONFIGS HERE
             data = RaudioConfig(stream_url=url, authenticated=[])
+            
+            datadict = dataclasses.asdict(data)
 
             # create default json file in upper directory
             with open('raudio_config.json','w') as jsonfile:
-                json.dump(data, jsonfile)
-
-            # call recursively on newly created file
+                json.dump(datadict, jsonfile)
 
             return True
 
